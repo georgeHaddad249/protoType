@@ -14,7 +14,6 @@ public class SimpleChatClient extends AbstractClient {
 		super(host, port);
 		this.chatClientCLI = new ChatClientCLI(this);
 	}
-	
 	@Override
 	protected void connectionEstablished() {
 		// TODO Auto-generated method stub
@@ -27,7 +26,6 @@ public class SimpleChatClient extends AbstractClient {
 			e.printStackTrace();
 		}
 	}
-
 	@Override
 	protected void handleMessageFromServer(Object msg) {
 		chatClientCLI.displayMessage(msg);
