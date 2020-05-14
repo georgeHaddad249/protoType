@@ -16,9 +16,6 @@ public class SimpleChatServer extends AbstractServer {
 		System.out.println("Received Message: " + msg.toString());
 		sendToAllClients(msg);
 	}
-	
-	
-	
 	@Override
 	protected synchronized void clientDisconnected(ConnectionToClient client) {
 		// TODO Auto-generated method stub
@@ -26,9 +23,6 @@ public class SimpleChatServer extends AbstractServer {
 		System.out.println("Client Disconnected.");
 		super.clientDisconnected(client);
 	}
-	
-	
-
 	@Override
 	protected void clientConnected(ConnectionToClient client) {
 		super.clientConnected(client);

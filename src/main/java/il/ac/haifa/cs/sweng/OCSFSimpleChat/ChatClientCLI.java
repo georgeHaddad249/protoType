@@ -11,6 +11,7 @@ import dbconnection.dbconnections;
 public class ChatClientCLI {
 
 	private SimpleChatClient client;
+	private SimpleChatServer server;
 	private boolean isRunning;
 	private static final String SHELL_STRING = "Enter message (or exit to quit)> ";
 	private Thread loopThread;
