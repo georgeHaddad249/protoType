@@ -39,42 +39,8 @@ public class ChatClientCLI {
 						if (message.equalsIgnoreCase("Exit")) {
 							System.out.println("Closing connection.");
 								client.closeConnection();
-						} else if(message.equalsIgnoreCase("show"))
-						{
-						     	db.getAllquestions();
-								System.out.println("Type the number of the question you want to edit or Exit for exit");
-								message = reader.readLine();
-								if (message.equalsIgnoreCase("Exit")) {
-									System.out.println("Closing connection.");
-										client.closeConnection();
-								}
-								else {
-									ArrayList<String> newQuestion = new ArrayList<String>();
-									String input;
-									System.out.print("Type the new question:");
-									input=reader.readLine();
-									newQuestion.add(input);
-									System.out.print("Type the right answer:");
-									input=reader.readLine();
-									newQuestion.add(input);
-									for(int i=0;i<3;i++)
-									{
-									System.out.print("Type a wrong answer: ");
-									input=reader.readLine();
-									newQuestion.add(input);	
-									}
-									db.editQuestion(message,newQuestion);
-									System.out.print("Type show if you want to see the updated question or Exit for exit");
-									input=reader.readLine();
-									if (input.equalsIgnoreCase("Exit")) {
-										System.out.println("Closing connection.");
-											client.closeConnection();
-									}
-									else
-									{
-										db.showUpdatedquestion(message);
-									}
-								}
+						} else {
+							server.handleMessageFromClient(message, client);
 						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block

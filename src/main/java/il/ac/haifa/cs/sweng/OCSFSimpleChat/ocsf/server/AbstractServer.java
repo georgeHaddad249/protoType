@@ -3,10 +3,11 @@
 // license found at www.lloseng.com
 
 package il.ac.haifa.cs.sweng.OCSFSimpleChat.ocsf.server;
-
+import dbconnection.*;
 import java.net.*;
 import java.util.*;
 import java.io.*;
+
 
 /**
 * The <code> AbstractServer </code> class maintains a thread that waits
@@ -529,8 +530,8 @@ public abstract class AbstractServer implements Runnable
    * @param client the connection connected to the client that
    *  sent the message.
    */
-  protected abstract void handleMessageFromClient(
-    Object msg, ConnectionToClient client);
+
+  protected abstract void handleMessageFromClient(Object message, ConnectionToClient client);
 
 
 // METHODS TO BE USED FROM WITHIN THE FRAMEWORK ONLY ----------------
