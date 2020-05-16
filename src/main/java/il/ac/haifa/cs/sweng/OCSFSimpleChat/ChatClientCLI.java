@@ -27,7 +27,6 @@ public class ChatClientCLI {
 			public void run() {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				String message;
-				dbconnections db = new dbconnections();
 				while (client.isConnected()) {
 					System.out.print(SHELL_STRING);
 					try {
@@ -40,7 +39,7 @@ public class ChatClientCLI {
 							System.out.println("Closing connection.");
 								client.closeConnection();
 						} else {
-							server.handleMessageFromClient(message, client);
+							client.sendToServer(message);
 						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block

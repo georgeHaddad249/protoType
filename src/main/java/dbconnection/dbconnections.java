@@ -69,37 +69,43 @@ public class dbconnections {
 		printAllQuestions(questions);
 		return questions;
 	}
-	public static void showUpdatedquestion(String message)
+	public static ArrayList<String> showUpdatedquestion(String message)
 	{
+		ArrayList<String> AllInfo = new ArrayList<String>();
 		try {
 			int id=Integer.parseInt(message);
 			String sql = "SELECT * FROM questions WHERE id = "+id;
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
 			String ques=rs.getString("question");
-			System.out.print("The updated question is: "+ques+" \nthe right answer is:"+rs.getString("rightanswer")+" \nthe other answers are: "+rs.getString("answers1")+","+rs.getString("answers2")+","+rs.getString("answers3")+".\n");
+		    AllInfo.add(ques);
+		    AllInfo.add(rs.getString("rightanswer"));
+		    AllInfo.add(rs.getString("answers1"));
+		    AllInfo.add(rs.getString("answers2"));
+		    AllInfo.add(rs.getString("answers3"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return AllInfo;
 	}
-	public static void editQuestion(String message,ArrayList<String> newQuestion)
+	public static void editQuestion(ArrayList<String> newQuestion)
 	{
 		try { 
-		String ques=newQuestion.get(0);
-		int msg = Integer.parseInt(message);
+		String ques=newQuestion.get(1);
+		int msg = Integer.parseInt(newQuestion.get(0));
 		String sql = "UPDATE questions SET question = '" + (ques) + "' WHERE id = "+(msg);
 		boolean rs = stmt.execute(sql);
-		ques=newQuestion.get(1);
+		ques=newQuestion.get(2);
 		sql = "UPDATE questions SET rightanswer = '" + (ques) + "' WHERE id = "+(msg);
 		rs = stmt.execute(sql);
-		ques=newQuestion.get(2);
+		ques=newQuestion.get(3);
 		sql= "UPDATE questions SET answers1 = '" + (ques) + "' WHERE id = "+(msg);
 		rs = stmt.execute(sql);
-		ques=newQuestion.get(3);
+		ques=newQuestion.get(4);
 		sql= "UPDATE questions SET answers2 = '" + (ques) + "' WHERE id = "+(msg);
 		rs = stmt.execute(sql);
-		ques=newQuestion.get(4);
+		ques=newQuestion.get(5);
 		sql = "UPDATE questions SET answers3 = '" + (ques) + "' WHERE id = "+(msg);
 		rs = stmt.execute(sql);
 		} catch (SQLException e) {
